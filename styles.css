@@ -1,0 +1,365 @@
+:root {
+    --bg: rgba(255, 255, 255, 0.1);
+    --border: rgba(255, 255, 255, 0.2);
+    --text: #333;
+    --border-radius: 15px;
+    --shadow-out: 8px 8px 16px rgba(0, 0, 0, 0.1), -8px -8px 16px rgba(255, 255, 255, 0.9);
+    --shadow-in: inset 8px 8px 16px rgba(0, 0, 0, 0.1), inset -8px -8px 16px rgba(255, 255, 255, 0.9);
+    --personal-color: #3498db;
+    --work-color: #2ecc71;
+    --urgent-color: #e74c3c;
+}
+
+body.dark {
+    --bg: #0a0a0a;
+    --border: rgba(255, 255, 255, 0.05);
+    --text: #f0f0f0;
+    --shadow-out: 8px 8px 16px rgba(0, 0, 0, 0.5), -8px -8px 16px rgba(255, 255, 255, 0.02);
+    --shadow-in: inset 8px 8px 16px rgba(0, 0, 0, 0.5), inset -8px -8px 16px rgba(255, 255, 255, 0.02);
+    --personal-color: #5dade2;
+    --work-color: #58d68d;
+    --urgent-color: #ec7063;
+}
+
+body {
+    font-family: 'JetBrains Mono', monospace;
+    background: var(--bg);
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    color: var(--text);
+    transition: all 0.3s ease;
+    scroll-behavior: smooth;
+}
+
+html {
+    background: var(--bg);
+    transition: background 0.3s ease;
+    scroll-behavior: smooth;
+}
+
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--bg);
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #bebebe;
+    border-radius: 10px;
+}
+
+body.dark ::-webkit-scrollbar-track {
+    background: var(--bg);
+}
+
+body.dark ::-webkit-scrollbar-thumb {
+    background: #333;
+}
+
+.contenedor {
+    background: var(--bg);
+    border-radius: var(--border-radius);
+    padding: 30px;
+    border: none;
+    box-shadow: var(--shadow-out);
+    width: 700px;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.encabezado {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+h1 {
+    color: var(--text);
+    margin: 0;
+}
+
+.btn-alternador {
+    background: var(--bg);
+    border: none;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-out);
+    cursor: pointer;
+    font-size: 18px;
+    padding: 5px;
+    transition: all 0.2s ease;
+    font-family: 'JetBrains Mono', monospace;
+}
+
+.btn-alternador:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+body.dark .btn-alternador:hover {
+    background: rgba(0, 0, 0, 0.2);
+}
+
+.contenedor-entrada {
+    display: flex;
+    margin-bottom: 20px;
+    gap: 10px;
+}
+
+#entrada-tarea,
+#selector-categoria,
+#entrada-fecha-vencimiento {
+    padding: 10px;
+    border: none;
+    border-radius: var(--border-radius);
+    background: var(--bg);
+    box-shadow: var(--shadow-in);
+    outline: none;
+    font-size: 16px;
+    color: var(--text);
+    font-family: 'JetBrains Mono', monospace;
+}
+
+#entrada-tarea::placeholder {
+    font-family: 'JetBrains Mono', monospace;
+    color: var(--text);
+    opacity: 0.7;
+}
+
+body.dark #entrada-tarea::placeholder {
+    color: var(--text);
+}
+
+#entrada-tarea {
+    flex: 2;
+}
+
+#selector-categoria {
+    flex: 0 0 80px;
+}
+
+#entrada-fecha-vencimiento {
+    flex: 0 0 120px;
+}
+
+
+#btn-agregar {
+    flex: 0 0 120px;
+    padding: 10px 15px;
+    border: none;
+    border-radius: var(--border-radius);
+    background: var(--bg);
+    box-shadow: var(--shadow-out);
+    cursor: pointer;
+    font-size: 16px;
+    transition: all 0.2s ease;
+    color: var(--text);
+    font-family: 'JetBrains Mono', monospace;
+}
+
+#btn-agregar:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+body.dark #btn-agregar:hover {
+    background: rgba(0, 0, 0, 0.2);
+}
+
+.contenedor-filtros {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+    justify-content: center;
+}
+
+.btn-filtro {
+    padding: 8px 16px;
+    border: none;
+    border-radius: var(--border-radius);
+    background: var(--bg);
+    box-shadow: var(--shadow-out);
+    cursor: pointer;
+    font-size: 14px;
+    transition: all 0.2s ease;
+    color: var(--text);
+    font-family: 'JetBrains Mono', monospace;
+}
+
+.btn-filtro:hover,
+.btn-filtro.active {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+body.dark .btn-filtro:hover,
+body.dark .btn-filtro.active {
+    background: rgba(0, 0, 0, 0.2);
+}
+
+#lista-tareas {
+    list-style: none;
+    padding: 0;
+    max-height: 400px;
+    overflow-y: auto;
+    padding-right: 10px;
+    transition: opacity 0.3s ease, height 0.3s ease;
+}
+
+#lista-tareas.fade-out {
+    opacity: 0;
+}
+
+#lista-tareas::-webkit-scrollbar {
+    width: 8px;
+}
+
+#lista-tareas::-webkit-scrollbar-track {
+    background: var(--bg);
+    border-radius: 10px;
+}
+
+#lista-tareas::-webkit-scrollbar-thumb {
+    background: #bebebe;
+    border-radius: 10px;
+}
+
+body.dark #lista-tareas::-webkit-scrollbar-track {
+    background: var(--bg);
+}
+
+body.dark #lista-tareas::-webkit-scrollbar-thumb {
+    background: #333;
+}
+
+.elemento-tarea {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    margin-bottom: 10px;
+    border-radius: var(--border-radius);
+    background: var(--bg);
+    border: none;
+    box-shadow: var(--shadow-out);
+    transition: all 0.3s ease, opacity 0.3s ease, transform 0.3s ease;
+    animation: fadeIn 0.3s ease;
+    position: relative;
+    opacity: 0;
+    transform: translateY(10px);
+}
+
+.elemento-tarea.fade-in {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.elemento-tarea.completado {
+    opacity: 0.7;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.insignia-categoria {
+    padding: 4px 8px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: bold;
+    margin-right: 10px;
+    width: 60px;
+    text-align: center;
+    display: inline-block;
+    background: var(--personal-color);
+    color: white;
+}
+
+.categoria-personal { background: var(--personal-color); }
+.categoria-trabajo { background: var(--work-color); }
+.categoria-urgente { background: var(--urgent-color); }
+
+.fecha-vencimiento {
+    font-size: 12px;
+    margin-right: 10px;
+    padding: 4px 8px;
+    border-radius: 4px;
+    background: var(--bg);
+    border: none;
+    box-shadow: var(--shadow-out);
+    min-width: 100px;
+    display: inline-block;
+    text-align: center;
+}
+
+.fecha-vencimiento.vencida {
+    background: rgba(231, 76, 60, 0.8);
+    color: white;
+}
+
+.entrada-edicion {
+    flex: 1;
+    margin-right: 10px;
+    display: none;
+}
+
+.texto-tarea,
+.entrada-edicion {
+    flex: 1;
+    text-align: left;
+    color: var(--text);
+}
+
+.elemento-tarea.completado .texto-tarea {
+    text-decoration: line-through;
+}
+
+body.dark .texto-tarea,
+body.dark .entrada-edicion {
+    color: var(--text);
+}
+
+.btn-tarea {
+    margin-left: 5px;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
+    background: var(--bg);
+    box-shadow: var(--shadow-out);
+    cursor: pointer;
+    font-size: 14px;
+    transition: all 0.2s ease;
+    color: var(--text);
+    font-family: 'JetBrains Mono', monospace;
+}
+
+.btn-tarea:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+body.dark .btn-tarea:hover {
+    background: rgba(0, 0, 0, 0.2);
+}
+
+.modo-edicion .texto-tarea,
+.modo-edicion .btn-editar,
+.modo-edicion .insignia-categoria,
+.modo-edicion .fecha-vencimiento {
+    display: none;
+}
+
+.modo-edicion .entrada-edicion,
+.modo-edicion .btn-guardar {
+    display: inline-block;
+}
