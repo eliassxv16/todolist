@@ -54,7 +54,10 @@ open index.html
 - `script.js`: Lógica de la aplicación (agregar, editar, filtrar, etc.).
 - `README.md`: Este archivo.
 
-## Capturas de Pantalla
+## Capturas de Pantalla y Demo
+
+### Enlace de la Demo
+(https://eliassxv16.github.io/todolist/)
 
 ### Vista Principal (Tema Claro)
 ![Vista Principal Clara](/img/claro.png)  
